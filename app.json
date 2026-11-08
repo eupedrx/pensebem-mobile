@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Pense Bem",
+    "slug": "pensebem-mobile",
+    "scheme": "pensebem",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pensebem.mobile"
+    },
+    "android": {
+      "package": "com.pensebem.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#B4AA90",
+        "foregroundImage": "./assets/icon.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/icon.png",
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-font",
+      ["expo-splash-screen", { "backgroundColor": "#B4AA90", "image": "./assets/icon.png", "imageWidth": 160 }],
+      "expo-router"
+    ]
+  }
+}
