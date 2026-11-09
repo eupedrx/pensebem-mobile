@@ -26,7 +26,7 @@ export function ProgramCard({
       </View>
       <Body>
         {available
-          ? `${program.questions.length} questões · Melhor resultado: ${best}/${program.questions.length}`
+          ? `${program.questions.length} questões · Melhor pontuação: ${best}/${program.questions.length * 3} pontos`
           : program.number === 6
             ? 'Revisão geral do livro. Depende da digitalização dos programas anteriores.'
             : 'As questões deste programa ainda não foram digitalizadas.'}

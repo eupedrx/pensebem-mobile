@@ -15,9 +15,17 @@ export function ScoreSummary({ result }: { result: Result }) {
         }}
       >
         {result.score.toString().padStart(2, '0')}
-        <Text style={{ fontSize: 24 }}>/{result.total}</Text>
+        <Text style={{ fontSize: 24 }}>/{result.maxScore}</Text>
       </Text>
-      <Body>{Math.round((result.score / result.total) * 100)}% de acertos</Body>
+      <Body>
+        {result.score} de {result.maxScore} pontos possíveis
+      </Body>
+      <Body>
+        {result.attempts.filter((a) => a.correct).length} de {result.total} questões certas
+      </Body>
+      {result.scoring === 'legacy' && (
+        <Body>Partida anterior: regra antiga de 1 ponto por acerto.</Body>
+      )}
     </Panel>
   );
 }

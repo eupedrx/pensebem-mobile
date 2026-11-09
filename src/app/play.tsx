@@ -9,6 +9,7 @@ import { Screen } from '../components/layout/Screen';
 import { Body, Button, Label, Panel, Title } from '../components/ui';
 import { questions } from '../data/questions';
 import { getProgram } from '../data/books';
+import { sessionScore } from '../game/engine';
 
 export default function PlayScreen() {
   const {
@@ -24,7 +25,7 @@ export default function PlayScreen() {
     finish,
   } = useGameSession();
   if (!session || bookAccess?.bookId !== session.bookId) return <Redirect href="/" />;
-  const score = session.attempts.filter((a) => a.correct).length;
+  const score = sessionScore(session);
   const last = session.attempts.at(-1);
   return (
     <Screen tabs={false}>
@@ -57,17 +58,36 @@ export default function PlayScreen() {
             total={session.ids.length}
             score={score}
             questionId={question?.id}
+            attemptNumber={session.pendingChoices.length + 1}
           />
-          {last && (
-            <Panel style={{ padding: 16, borderColor: last.correct ? colors.green : colors.red }}>
-              <Label
-                style={{ color: last.correct ? colors.green : colors.red }}
-                accessibilityLiveRegion="polite"
-              >
-                {last.correct ? 'RESPOSTA CORRETA' : 'VAMOS APRENDER'}
+          {session.pendingChoices.length > 0 ? (
+            <Panel style={{ borderColor: colors.red }}>
+              <Label style={{ color: colors.red }} accessibilityLiveRegion="polite">
+                RESPOSTA INCORRETA · TENTE NOVAMENTE
               </Label>
-              <Body>{questions.find((q) => q.id === last.questionId)?.explanation}</Body>
+              <Body>
+                Você tem {3 - session.pendingChoices.length}{' '}
+                {session.pendingChoices.length === 2
+                  ? 'tentativa restante'
+                  : 'tentativas restantes'}
+                . Um acerto agora vale {3 - session.pendingChoices.length}{' '}
+                {session.pendingChoices.length === 2 ? 'ponto' : 'pontos'}.
+              </Body>
             </Panel>
+          ) : (
+            last && (
+              <Panel style={{ padding: 16, borderColor: last.correct ? colors.green : colors.red }}>
+                <Label
+                  style={{ color: last.correct ? colors.green : colors.red }}
+                  accessibilityLiveRegion="polite"
+                >
+                  {last.correct
+                    ? `RESPOSTA CORRETA · +${last.points} ${last.points === 1 ? 'PONTO' : 'PONTOS'}`
+                    : 'TRÊS TENTATIVAS ENCERRADAS · 0 PONTOS'}
+                </Label>
+                <Body>{questions.find((q) => q.id === last.questionId)?.explanation}</Body>
+              </Panel>
+            )
           )}
           {question ? (
             <>
@@ -86,6 +106,9 @@ export default function PlayScreen() {
           ) : (
             <Panel>
               <Title>Partida concluída!</Title>
+              <Title style={{ color: colors.green }}>
+                Total: {score} de {session.ids.length * 3} pontos
+              </Title>
               <Body>
                 Você respondeu a {session.ids.length}{' '}
                 {session.ids.length === 1 ? 'questão' : 'questões'}. Veja o resultado e escolha o

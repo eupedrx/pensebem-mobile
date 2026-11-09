@@ -61,7 +61,10 @@ export default function BookScreen() {
         const best = progress.history
           .filter(
             (r) =>
-              r.bookId === book.id && r.programNumber === program.number && r.mode === 'classic',
+              r.bookId === book.id &&
+              r.programNumber === program.number &&
+              r.mode === 'classic' &&
+              r.scoring === 'three-attempts',
           )
           .reduce((value, r) => Math.max(value, r.score), 0);
         return (

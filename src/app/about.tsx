@@ -18,15 +18,17 @@ export default function AboutScreen() {
       <Panel>
         <Label style={{ color: colors.cyan }}>02 · RESPONDA</Label>
         <Body>
-          Leia a pergunta, selecione A, B, C ou D e toque em Confirmar resposta. Cada acerto vale um
-          ponto. Você verá uma explicação após responder.
+          Leia a pergunta, selecione A, B, C ou D e toque em Confirmar resposta. Você tem até três
+          tentativas por pergunta: acerto na primeira vale 3 pontos; na segunda, 2 pontos; na
+          terceira, 1 ponto. Três erros valem 0 pontos. A explicação aparece somente ao encerrar a
+          questão.
         </Body>
       </Panel>
       <Panel>
         <Label style={{ color: colors.amber }}>03 · APRENDA</Label>
         <Body>
-          Veja suas respostas ao concluir e retome os erros no modo de revisão. Você pode sair
-          durante uma partida e continuar depois.
+          Ao concluir as 30 questões, veja seu total de até 90 pontos e retome os erros no modo de
+          revisão. Você pode sair durante uma partida e continuar depois.
         </Body>
       </Panel>
       <Title style={{ fontSize: 20 }}>Sobre esta versão</Title>
@@ -40,10 +42,9 @@ export default function AboutScreen() {
         enunciados foram adaptados para uso sem o livro físico; as explicações são editoriais.
       </Body>
       <Body>
-        Esta versão avança após cada resposta e oferece revisão dos erros ao final. No brinquedo
-        descrito no livro, uma resposta errada repetia a questão. Os seis programas estão
-        cadastrados, mas somente o Programa 1 tem questões digitalizadas. Os programas 2 a 6
-        aparecem como indisponíveis.
+        Esta versão avança após um acerto ou ao encerrar as três tentativas e oferece revisão dos
+        erros ao final. Os seis programas estão cadastrados, mas somente o Programa 1 tem questões
+        digitalizadas. Os programas 2 a 6 aparecem como indisponíveis.
       </Body>
       <Body>
         Os dados históricos são apresentados no contexto do livro. A menção a recordes da publicação

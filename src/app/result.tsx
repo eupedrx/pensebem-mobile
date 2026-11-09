@@ -21,7 +21,7 @@ export default function ResultScreen() {
     <Screen>
       <Label>PARTIDA CONCLUÍDA</Label>
       <Title>
-        {result.score === result.total ? 'Você acertou todas!' : 'Cada resposta ensina.'}
+        {result.attempts.every((a) => a.correct) ? 'Você acertou todas!' : 'Cada resposta ensina.'}
       </Title>
       <ScoreSummary result={result} />
       <Button onPress={() => router.replace('/')}>Digitar código para jogar</Button>

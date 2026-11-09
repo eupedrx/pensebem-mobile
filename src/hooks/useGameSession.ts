@@ -15,7 +15,7 @@ export function useGameSession() {
   const question = questions.find((q) => q.id === session?.ids[index]);
   useEffect(() => {
     locked.current = false;
-  }, [index]);
+  }, [index, session?.pendingChoices.length]);
   useFocusEffect(
     useCallback(() => {
       const listener = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -36,7 +36,7 @@ export function useGameSession() {
     if (!session || locked.current) return;
     locked.current = true;
     const result = finishSession(session);
-    update((p) => ({ version: 1, history: [result, ...p.history].slice(0, 100), session: null }));
+    update((p) => ({ version: 2, history: [result, ...p.history].slice(0, 100), session: null }));
     router.replace({ pathname: '/result', params: { id: result.id } });
   }
   return {

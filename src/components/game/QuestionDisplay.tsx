@@ -8,11 +8,13 @@ export function QuestionDisplay({
   total,
   score,
   questionId,
+  attemptNumber,
 }: {
   index: number;
   total: number;
   score: number;
   questionId?: number;
+  attemptNumber: number;
 }) {
   return (
     <Panel style={{ minHeight: 140 }}>
@@ -24,11 +26,17 @@ export function QuestionDisplay({
             .padStart(2, '0')}{' '}
           / {total}
         </Label>
-        <Label style={{ color: colors.cyan }}>{score} ACERTOS</Label>
+        <Label style={{ color: colors.cyan }}>{score} PONTOS</Label>
       </View>
       <Text style={local.display}>
         {questionId === undefined ? 'FIM' : questionId.toString().padStart(2, '0')}
       </Text>
+      {questionId !== undefined && (
+        <Label>
+          TENTATIVA {attemptNumber} DE 3 · VALE {4 - attemptNumber}{' '}
+          {attemptNumber === 3 ? 'PONTO' : 'PONTOS'}
+        </Label>
+      )}
       <View style={local.track}>
         <View
           style={{ height: 3, width: `${(index / total) * 100}%`, backgroundColor: colors.cyan }}

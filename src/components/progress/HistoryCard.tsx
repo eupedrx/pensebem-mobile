@@ -18,9 +18,10 @@ export function HistoryCard({
       <View style={s.row}>
         <Label>{r.mode === 'classic' ? `Programa ${r.programNumber}` : modeNames[r.mode]}</Label>
         <Title style={{ fontSize: 22, color: colors.green }}>
-          {r.score}/{r.total}
+          {r.score}/{r.maxScore} pts
         </Title>
       </View>
+      {r.scoring === 'legacy' && <Label>REGRA ANTERIOR · 1 PONTO POR ACERTO</Label>}
       <Body>
         {books.find((b) => b.id === r.bookId)?.title} · Código{' '}
         {getProgram(r.bookId, r.programNumber)?.code}

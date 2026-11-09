@@ -9,7 +9,10 @@ import { reviewIds } from '../game/engine';
 export default function ProgressScreen() {
   const { progress } = useProgress();
   const total = progress.history.reduce((v, r) => v + r.total, 0);
-  const correct = progress.history.reduce((v, r) => v + r.score, 0);
+  const correct = progress.history.reduce(
+    (v, r) => v + r.attempts.filter((a) => a.correct).length,
+    0,
+  );
   return (
     <Screen>
       <Label>NO SEU RITMO</Label>
