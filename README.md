@@ -38,6 +38,14 @@ O catálogo está em `src/data/books.ts`. Para cadastrar outro livro, adicione s
 
 Sem login, backend ou coleta de dados. As fontes e a capa são empacotadas, sem dependência de rede durante o uso instalado. No navegador, os dados ficam no armazenamento da origem; apagar os dados do aplicativo ou navegador remove o progresso.
 
+## Tentativas e pontuação
+
+Cada pergunta permite até três tentativas. Acertar na primeira vale **3 pontos**; na segunda, **2 pontos**; na terceira, **1 ponto**. Três erros encerram a questão com **0 pontos**. A explicação e a resposta correta só aparecem depois que a questão é encerrada. Selecionar uma alternativa não gasta tentativa: é preciso confirmar.
+
+O Programa 1 tem 30 perguntas e vale até **90 pontos**. A pontuação total aparece ao terminar a última questão e na tela de resultado. Partidas rápidas e revisões seguem a mesma regra, com máximo de três pontos por questão (18 pontos na partida rápida de seis questões).
+
+O estado das tentativas em andamento é salvo com a partida. A versão 2 do progresso preserva os históricos anteriores com sua regra original de 1 ponto por acerto, indicados na tela e excluídos do recorde da nova pontuação. Em partidas antigas ainda em andamento, os acertos já registrados passam a valer 3 pontos; questões erradas já concluídas permanecem encerradas com 0 pontos. O número da próxima questão é preservado.
+
 ## Verificações
 
 ```sh
@@ -49,9 +57,8 @@ npm run export:web
 
 Os testes verificam o banco, pontuação, conclusão, seleção aleatória, revisão e restauração de dados. A prévia web não substitui testes em aparelhos Android e iOS.
 
-Validação desta versão: TypeScript, ESLint, nove testes automatizados, 20/20 verificações do Expo Doctor e exportações web/Android/iOS (Hermes) aprovados. Fluxo web conferido em viewport de 390 × 844: acerto, erro, pausa, recarregamento, retomada, resultado e revisão. APK/IPA e aparelhos físicos ainda não foram testados.
+Validação desta versão: TypeScript, ESLint, 17 testes automatizados, 20/20 verificações do Expo Doctor e exportações web/Android/iOS (Hermes) aprovados. Fluxo web conferido em viewport de 390 × 844: acerto, erro, pausa, recarregamento, retomada, resultado e revisão. APK/IPA e aparelhos físicos ainda não foram testados.
 
-O npm audit aponta 12 alertas moderados transitivos em ferramentas do Expo e ESLint (`glob` e `minimatch`). As correções compatíveis disponíveis foram aplicadas; a correção automática restante propõe regressão de SDK, por isso não foi forçada.
 
 ## Builds para aparelhos
 
@@ -94,7 +101,7 @@ Fonte: PDF fornecido pelo usuário, “Pense Bem — Senninha conta a história 
 
 Os enunciados e algumas alternativas foram adaptados; as questões 14–19, originalmente associadas a uma figura, receberam descrições textuais. As explicações e gabaritos foram elaborados a partir das questões e precisam de revisão editorial antes de publicação. A questão 29 pergunta a expressão “pole position”, sem tratar o recorde citado em 1995 como atual.
 
-O fluxo avança após cada resposta e permite revisar erros no fim; não emula os códigos eletrônicos, sons ou repetição de erros do aparelho original. Programas 2–6 ainda não foram digitalizados. O modo rápido usa somente o Programa 1 e não corresponde ao Programa 6 do livro.
+O fluxo avança após um acerto ou três erros e permite revisar questões não acertadas no fim; não emula os códigos eletrônicos ou sons do aparelho original. Programas 2–6 ainda não foram digitalizados. O modo rápido usa somente o Programa 1 e não corresponde ao Programa 6 do livro.
 
 O PDF original permanece local e está ignorado pelo Git. Marcas, personagens e imagens pertencem aos respectivos titulares. Antes de distribuir publicamente a capa e o conteúdo, obtenha a autorização dos titulares. Não há vínculo oficial com Tectoy, Instituto Ayrton Senna ou Senninha.
 
